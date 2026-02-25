@@ -221,6 +221,53 @@
                 }
             }
         });
+
+        // Lógica do Envio do Formulário (AJAX)
+        const form = document.getElementById('contact-form');
+        const statusMsg = document.getElementById('sucesso-msg');
+        const btnSubmit = document.getElementById('btn-submit');
+
+        form.addEventListener('submit', async function(event) {
+            event.preventDefault(); // Impede que a página recarregue
+            
+            // Muda o botão para estado de "A Enviar..."
+            const btnOriginalText = btnSubmit.innerHTML;
+            btnSubmit.innerHTML = 'A enviar...';
+            btnSubmit.disabled = true;
+            btnSubmit.classList.add('opacity-70', 'cursor-not-allowed');
+
+            const data = new FormData(event.target);
+            
+            try {
+                const response = await fetch(event.target.action, {
+                    method: form.method,
+                    body: data,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    // Se correu bem: mostra a mensagem verde e limpa o formulário
+                    statusMsg.classList.remove('hidden');
+                    form.reset();
+                    
+                    // Esconde a mensagem ao fim de 5 segundos (Opcional)
+                    setTimeout(() => {
+                        statusMsg.classList.add('hidden');
+                    }, 5000);
+                } else {
+                    alert("Ocorreu um erro a processar o seu pedido. Tente novamente.");
+                }
+            } catch (error) {
+                alert("Ocorreu um erro de ligação. Verifique a sua internet.");
+            } finally {
+                // Devolve o botão ao normal
+                btnSubmit.innerHTML = btnOriginalText;
+                btnSubmit.disabled = false;
+                btnSubmit.classList.remove('opacity-70', 'cursor-not-allowed');
+            }
+        });
     </script>
 </body>
 </html>

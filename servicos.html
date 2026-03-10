@@ -24,43 +24,42 @@
                         }
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
+                        display: ['Manrope', 'sans-serif'], // Letra gigante
+                        sans: ['Inter', 'sans-serif'],      // Letra de texto
                     }
                 }
             }
         }
     </script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800;900&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body class="bg-brand-light antialiased text-brand-navy font-sans selection:bg-brand-accent selection:text-white">
 
-    <header class="fixed w-full top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-gray-200/50 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
+    <header class="fixed top-6 inset-x-0 z-50 flex justify-center px-4 transition-all duration-500">
+        <div class="w-full max-w-6xl bg-brand-navy/60 backdrop-blur-xl border border-white/10 rounded-3xl px-6 py-4 flex justify-between items-center shadow-[0_0_40px_rgba(24,194,165,0.1)]">
+            
+            <div class="flex-shrink-0 flex items-center cursor-pointer">
+                <a href="index.html" class="flex items-center gap-1">
+                    <span class="text-2xl font-display font-black tracking-tighter text-white">OESTE<span class="text-brand-accent">LAB</span><span class="text-brand-accent text-3xl leading-none">.</span></span>
+                </a>
+            </div>
+
+            <nav class="hidden md:flex space-x-10 items-center">
+                <a href="index.html" class="text-sm font-bold text-gray-400 tracking-wide hover:text-brand-accent transition-colors">INÍCIO</a>
+                <a href="portfolio.html" class="text-sm font-bold text-gray-400 tracking-wide hover:text-brand-accent transition-colors">PORTFÓLIO</a>
+                <a href="servicos.html" class="text-sm font-bold text-white tracking-wide hover:text-brand-accent transition-colors">SERVIÇOS</a>
                 
-                <div class="flex-shrink-0 flex items-center cursor-pointer">
-                    <a href="index.html">
-                        <img src="images/logo1.png" alt="OesteLab Logo" class="h-12 w-auto object-contain">
-                    </a>
-                </div>
+                <a href="contactos.html" class="ml-4 px-8 py-3 text-sm font-black tracking-widest text-brand-navy bg-brand-accent hover:bg-white rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(24,194,165,0.4)] hover:shadow-[0_0_30px_rgba(255,255,255,0.6)] hover:-translate-y-1 uppercase">
+                    Falar Connosco
+                </a>
+            </nav>
 
-                <nav class="hidden md:flex space-x-8 items-center">
-                    <a href="index.html" class="text-sm font-semibold text-gray-600 hover:text-brand-accent transition-colors">Início</a>
-                    <a href="servicos.html" class="text-sm font-semibold text-gray-600 hover:text-brand-accent transition-colors">Serviços</a>
-                    <a href="portfolio.html" class="text-sm font-semibold text-gray-600 hover:text-brand-accent transition-colors">Portfólio</a>
-                    <a href="contactos.html" class="text-sm font-semibold text-gray-600 hover:text-brand-accent transition-colors">Contactos</a>
-                    
-                    <a href="contactos.html" class="ml-4 px-6 py-2.5 text-sm font-bold text-white bg-brand-navy hover:bg-opacity-90 rounded-full transition-all duration-300 shadow-md hover:-translate-y-0.5">
-                        Falar Connosco
-                    </a>
-                </nav>
-
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-btn" class="text-brand-navy hover:text-brand-accent focus:outline-none transition-colors">
-                        <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
-                        </svg>
-                    </button>
-                </div>
+            <div class="md:hidden flex items-center">
+                <button class="text-white hover:text-brand-accent focus:outline-none transition-colors">
+                    <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
             </div>
         </div>
     </header>
@@ -237,18 +236,33 @@
         </div>
     </section>
 
-    <footer class="bg-brand-navy py-12 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
+    <footer class="bg-brand-navy pt-32 pb-12 relative overflow-hidden border-t border-brand-accent/20">
+        <h2 class="text-[15vw] leading-none font-display font-black text-white/5 absolute top-10 left-1/2 -translate-x-1/2 whitespace-nowrap select-none pointer-events-none tracking-tighter">OESTELAB</h2>
+        
+        <div class="max-w-7xl mx-auto px-4 relative z-10 flex flex-col items-center text-center">
             
-            <div class="flex items-center justify-center md:justify-start gap-1 cursor-pointer">
-                <a href="index.html">
-                    <img src="images/Logo_Simples_Branco_SemFundo.png" alt="OesteLab Logo Branco" class="h-10 md:h-12 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity duration-300">
-                </a>
+            <h3 class="text-5xl md:text-8xl font-display font-black text-white mb-8 tracking-tighter uppercase">Pronto para <br><span class="text-brand-accent">dominar?</span></h3>
+            
+            <p class="text-xl text-gray-400 mb-12 max-w-2xl font-light font-sans">
+                Não deixe a sua concorrência ganhar mais terreno. Vamos construir a sua nova arma digital hoje.
+            </p>
+            
+            <a href="contactos.html" class="inline-flex text-3xl md:text-5xl font-display font-black text-white hover:text-brand-accent transition-colors border-b-4 border-brand-accent pb-2 hover:border-white mb-32 items-center justify-center gap-4">
+                VAMOS FALAR
+            </a>
+            
+            <div class="w-full pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-2">
+                    <span class="text-xl font-display font-black tracking-tighter text-white">OESTE<span class="text-brand-accent">LAB</span><span class="text-brand-accent text-2xl leading-none">.</span></span>
+                </div>
+                
+                <p class="text-gray-500 text-sm font-medium font-sans">© <span id="ano-atual"></span> OesteLab. Nascidos e criados na Região Oeste.</p>
+                
+                <div class="flex gap-6">
+                    <a href="mailto:geral@oestelab.pt" class="text-gray-400 hover:text-brand-accent font-bold text-sm uppercase tracking-widest font-sans">Email</a>
+                    <a href="https://www.instagram.com/_oestelab_/" target="_blank" class="text-gray-400 hover:text-brand-accent font-bold text-sm uppercase tracking-widest font-sans">Instagram</a>
+                </div>
             </div>
-            
-            <p class="text-gray-400 text-sm font-medium tracking-wide">Soluções digitais, resultados reais. Baseados no Oeste.</p>
-            
-            <p class="text-gray-500 text-xs">© <span id="ano-atual"></span> OesteLab. Todos os direitos reservados.</p>
         </div>
     </footer>
 

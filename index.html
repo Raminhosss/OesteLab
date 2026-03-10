@@ -3,175 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OesteLab | Soluções Web Modernas na Região Oeste</title>
-    <meta name="description" content="Transformamos o seu negócio no digital. Desenvolvimento Web e Web Design para empresas da Região Oeste.">
+    <title>OesteLab | Agência Digital - Região Oeste</title>
+    <meta name="description" content="Soluções digitais implacáveis para negócios que querem dominar o mercado.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800;900&family=Inter:wght@400;500&display=swap" rel="stylesheet">
     
     <script src="https://cdn.tailwindcss.com"></script>
     
     <script>
-    tailwind.config = {
-        theme: {
-            extend: {
-                colors: {
-                    brand: {
-                        navy: '#123954',    // Azul Escuro
-                        accent: '#18C2A5',  // Verde Água / Teal
-                        light: '#F8FAFC',   
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            navy: '#0B1B29',    // Azul ainda mais profundo/escuro para contraste
+                            accent: '#18C2A5',  // Verde Água (Néon)
+                            light: '#F8FAFC',   
+                        }
+                    },
+                    fontFamily: {
+                        display: ['Manrope', 'sans-serif'], // Letra gigante e pesada
+                        sans: ['Inter', 'sans-serif'],      // Letra de leitura
                     }
-                },
-                fontFamily: {
-                    sans: ['Inter', 'sans-serif'],
                 }
             }
         }
-    }
-</script>
+    </script>
 </head>
-<body class="bg-brand-light antialiased text-brand-navy font-sans selection:bg-brand-accent selection:text-white">
+<body class="bg-brand-light antialiased text-brand-navy font-sans selection:bg-brand-accent selection:text-brand-navy">
 
-    <header class="fixed w-full top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-gray-200/50 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
+    <header class="fixed top-6 inset-x-0 z-50 flex justify-center px-4 transition-all duration-500">
+        <div class="w-full max-w-6xl bg-brand-navy/60 backdrop-blur-xl border border-white/10 rounded-3xl px-6 py-4 flex justify-between items-center shadow-[0_0_40px_rgba(24,194,165,0.1)]">
+            
+            <div class="flex-shrink-0 flex items-center cursor-pointer">
+                <a href="index.html" class="flex items-center gap-1">
+                    <span class="text-2xl font-display font-black tracking-tighter text-white">OESTE<span class="text-brand-accent">LAB</span><span class="text-brand-accent text-3xl leading-none">.</span></span>
+                </a>
+            </div>
+
+            <nav class="hidden md:flex space-x-10 items-center">
+                <a href="index.html" class="text-sm font-bold text-white tracking-wide hover:text-brand-accent transition-colors">INÍCIO</a>
+                <a href="#sobre" class="text-sm font-bold text-gray-400 tracking-wide hover:text-brand-accent transition-colors">A EQUIPA</a>
+                <a href="portfolio.html" class="text-sm font-bold text-gray-400 tracking-wide hover:text-brand-accent transition-colors">PORTFÓLIO</a>
+                <a href="servicos.html" class="text-sm font-bold text-gray-400 tracking-wide hover:text-brand-accent transition-colors">SERVIÇOS</a>
                 
-                <div class="flex-shrink-0 flex items-center cursor-pointer">
-                    <a href="index.html">
-                        <img src="images/logo1.png" alt="OesteLab Logo" class="h-12 w-auto object-contain">
-                    </a>
-                </div>
+                <a href="contactos.html" class="ml-4 px-8 py-3 text-sm font-black tracking-widest text-brand-navy bg-brand-accent hover:bg-white rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(24,194,165,0.4)] hover:shadow-[0_0_30px_rgba(255,255,255,0.6)] hover:-translate-y-1 uppercase">
+                    Falar Connosco
+                </a>
+            </nav>
 
-                <nav class="hidden md:flex space-x-8 items-center">
-                    <a href="index.html" class="text-sm font-semibold text-gray-600 hover:text-brand-accent transition-colors">Início</a>
-                    <a href="servicos.html" class="text-sm font-semibold text-gray-600 hover:text-brand-accent transition-colors">Serviços</a>
-                    <a href="portfolio.html" class="text-sm font-semibold text-gray-600 hover:text-brand-accent transition-colors">Portfólio</a>
-                    <a href="contactos.html" class="text-sm font-semibold text-gray-600 hover:text-brand-accent transition-colors">Contactos</a>
-                    
-                    <a href="contactos.html" class="ml-4 px-6 py-2.5 text-sm font-bold text-white bg-brand-navy hover:bg-opacity-90 rounded-full transition-all duration-300 shadow-md hover:-translate-y-0.5">
-                        Falar Connosco
-                    </a>
-                </nav>
-
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-btn" class="text-brand-navy hover:text-brand-accent focus:outline-none transition-colors">
-                        <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
-                        </svg>
-                    </button>
-                </div>
+            <div class="md:hidden flex items-center">
+                <button class="text-white hover:text-brand-accent focus:outline-none transition-colors">
+                    <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
             </div>
         </div>
     </header>
 
-    <div id="mobile-menu" class="hidden fixed top-20 left-0 w-full bg-white/95 backdrop-blur-xl border-b border-gray-200 flex-col py-6 px-6 shadow-2xl md:hidden z-40">
-        <a href="index.html" class="py-4 text-base font-bold text-gray-800 hover:text-brand-accent border-b border-gray-100">Início</a>
-        <a href="servicos.html" class="py-4 text-base font-bold text-gray-800 hover:text-brand-accent border-b border-gray-100">Serviços</a>
-        <a href="portfolio.html" class="py-4 text-base font-bold text-gray-800 hover:text-brand-accent border-b border-gray-100">Portfólio</a>
-        <a href="contactos.html" class="py-4 text-base font-bold text-gray-800 hover:text-brand-accent">Contactos</a>
-        <a href="contactos.html" class="mt-6 py-4 text-center text-base font-bold text-white bg-brand-accent rounded-xl shadow-lg">Falar Connosco</a>
-    </div>
-
-    <section id="home" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden flex items-center min-h-[90vh]">
+    <section class="relative min-h-screen bg-brand-navy flex items-center justify-center pt-20 overflow-hidden">
         
-        <div class="absolute top-20 right-0 -mr-20 w-72 h-72 bg-brand-accent/10 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute bottom-10 left-10 w-96 h-96 bg-blue-300/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute inset-0 bg-[linear-gradient(to_right,#18C2A515_1px,transparent_1px),linear-gradient(to_bottom,#18C2A515_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_20%,transparent_100%)]"></div>
+        
+        <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-brand-accent/20 rounded-full blur-[120px] pointer-events-none mix-blend-screen"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[100px] pointer-events-none mix-blend-screen"></div>
 
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center">
-            <div class="max-w-4xl mx-auto">
-                
-                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-gray-200 shadow-sm mb-8 animate-fade-in-up">
-                    <span class="flex h-2 w-2 relative">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-accent opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-accent"></span>
-                    </span>
-                    <span class="text-xs font-bold text-brand-navy tracking-widest uppercase">Agência Digital da Região Oeste</span>
-                </div>
-                
-                <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold text-brand-navy tracking-tight leading-[1.1] mb-8">
-                    Transformamos o seu negócio no <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-cyan-500">digital.</span>
-                </h1>
-                
-                <p class="text-lg md:text-xl text-gray-500 mb-12 max-w-2xl mx-auto leading-relaxed font-medium">
-                    Soluções web modernas, de alta performance e focadas em converter visitantes em clientes reais para empresas que querem liderar o mercado.
-                </p>
-                
-                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <a href="portfolio.html" class="w-full sm:w-auto inline-flex justify-center items-center gap-2 px-8 py-4 text-base font-bold text-white bg-brand-accent hover:bg-blue-700 rounded-full transition-all duration-300 shadow-lg shadow-brand-accent/30 hover:-translate-y-1">
-                        Ver Projetos
-                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                        </svg>
-                    </a>
-                    
-                    <a href="servicos.html" class="w-full sm:w-auto inline-flex justify-center items-center gap-2 px-8 py-4 text-base font-bold text-brand-navy bg-white border border-gray-200 hover:border-brand-accent hover:text-brand-accent rounded-full transition-all duration-300 shadow-sm hover:shadow-md">
-                        Nossos Serviços
-                    </a>
-                    <a href="#sobre" class="w-full sm:w-auto inline-flex justify-center items-center gap-2 px-8 py-4 text-base font-bold text-brand-navy bg-white border border-gray-200 hover:border-brand-accent hover:text-brand-accent rounded-full transition-all duration-300 shadow-sm hover:shadow-md">
-                        Conhecer a Equipa
-                        <svg class="w-5 h-5 group-hover:translate-y-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                        </svg>
-                    </a>
-                </div>
-
+       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full text-center pb-32">
+            <br>
+            <br>
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-brand-accent/30 bg-brand-accent/10 text-brand-accent text-xs font-bold tracking-widest uppercase mb-12 backdrop-blur-sm">
+                <span class="w-2 h-2 rounded-full bg-brand-accent animate-pulse"></span>
+                A Nova Geração Digital
             </div>
+
+            <h1 class="font-display font-black text-6xl sm:text-7xl md:text-9xl text-white leading-[0.9] tracking-tighter mb-8 uppercase">
+                Não fazemos <span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-gray-500 block text-4xl sm:text-5xl md:text-7xl mt-4 mb-2">"apenas sites".</span>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-blue-400 block drop-shadow-[0_0_30px_rgba(24,194,165,0.4)]">Criamos Impérios.</span>
+            </h1>
+
+            <p class="mt-8 text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto font-sans font-light leading-relaxed">
+                Na OesteLab, desenvolvemos plataformas web ultrarrápidas, desenhadas à medida para esmagar a concorrência e <b class="text-white">dominar o mercado da Região Oeste.</b>
+            </p>
+
+            <div class="mt-16 flex flex-col sm:flex-row justify-center gap-6">
+                <a href="portfolio.html" class="px-10 py-5 bg-brand-navy border-2 border-brand-accent text-white font-display font-black uppercase tracking-widest text-sm rounded-2xl hover:bg-brand-accent hover:text-brand-navy transition-all duration-300 shadow-[0_0_20px_rgba(24,194,165,0.2)]">
+                    Ver O Nosso Poder
+                </a>
+                <a href="#sobre" class="px-10 py-5 bg-brand-navy border-2 border-white/20 text-white font-display font-black uppercase tracking-widest text-sm rounded-2xl hover:border-brand-accent hover:text-brand-accent transition-all duration-300 flex items-center justify-center gap-3">
+                    Conhecer a Equipa
+                    <svg class="w-5 h-5 animate-bounce flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+                </a>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+            <svg class="relative block w-full h-[100px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M1200 120H0V0l1200 120z" class="fill-brand-light"></path>
+            </svg>
         </div>
     </section>
 
-    <section id="sobre" class="py-24 bg-white relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-80 h-80 bg-brand-accent/5 rounded-full blur-3xl pointer-events-none -ml-20 -mt-20"></div>
-        <div class="absolute bottom-0 right-0 w-80 h-80 bg-brand-navy/5 rounded-full blur-3xl pointer-events-none -mr-20 -mb-20"></div>
+    <section id="sobre" class="pt-32 pb-24 bg-brand-light relative overflow-hidden">
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             
-            <div class="text-center max-w-3xl mx-auto mb-20">
-                <h2 class="text-brand-accent font-bold tracking-widest uppercase text-sm mb-3">A Nossa Missão</h2>
-                <h3 class="text-3xl md:text-5xl font-extrabold text-brand-navy tracking-tight mb-6">
-                    Nascemos no Oeste para digitalizar o comércio local.
+            <div class="text-center max-w-3xl mx-auto mb-24">
+                <h2 class="text-brand-accent font-black tracking-widest uppercase text-sm mb-3">A Nossa Missão</h2>
+                <h3 class="text-4xl md:text-5xl font-display font-black text-brand-navy tracking-tight mb-6 uppercase">
+                    Nascemos no Oeste para <br><span class="text-brand-accent">digitalizar o comércio.</span>
                 </h3>
                 <p class="text-lg text-gray-500 leading-relaxed font-medium">
-                    Somos uma agência jovem e dedicada a transformar negócios tradicionais em marcas digitais de sucesso. O nosso objetivo não é apenas "fazer sites bonitos", mas sim criar ferramentas de vendas rápidas e modernas que entreguem resultados reais. Queremos trazer mais visibilidade, mais clientes e mais faturação às empresas da nossa região.
+                    Somos os cérebros por trás das marcas que querem liderar o amanhã. O nosso foco é a performance, a conversão e o design implacável.
                 </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
                 
-                <div class="bg-brand-light p-10 rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-2xl hover:border-brand-accent/20 hover:-translate-y-2 transition-all duration-500 group flex flex-col items-center text-center relative overflow-hidden">
-                    
-                    <div class="absolute -top-4 -right-4 text-brand-navy/5 group-hover:text-brand-accent/10 transition-colors duration-500">
-                        <svg class="w-32 h-32" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+                <div class="bg-white p-12 rounded-[2rem] shadow-xl hover:shadow-[0_20px_50px_rgba(24,194,165,0.15)] hover:-translate-y-2 transition-all duration-500 group border-2 border-transparent hover:border-brand-accent/20 relative">
+                    <div class="w-32 h-32 bg-gray-50 rounded-full flex items-center justify-center mb-8 mx-auto border-4 border-white shadow-lg group-hover:scale-105 transition-transform duration-500 overflow-hidden relative z-10">
+                        <img src="images/img_vetorial_joao.png" alt="João" class="w-full h-full object-cover scale-[1.2]">
                     </div>
-                    
-                    <div class="w-32 h-32 bg-white shadow-md text-brand-accent rounded-full flex items-center justify-center mb-6 border border-gray-50 group-hover:scale-110 transition-transform duration-500 relative z-10 overflow-hidden">
-                        <img src="images/img_vetorial_joao.png" alt="João - Co-Fundador & Diretor Técnico" class="w-full h-full object-cover">
-                    </div>
-                    
-                    <div class="relative z-10">
-                        <h4 class="text-2xl font-bold text-brand-navy mb-1">João <span class="text-base font-medium text-gray-400">· 19 anos</span></h4>
-                        <p class="text-brand-accent font-bold text-xs uppercase tracking-widest mb-5">Co-Fundador & Diretor Técnico</p>
-                        <p class="text-gray-500 leading-relaxed text-sm">
-                            Estudante de Engenharia Informática. É o cérebro por trás do código, focado em garantir que os sites são ultrarrápidos, seguros e otimizados para os motores de busca (SEO).
+                    <div class="text-center">
+                        <h4 class="text-3xl font-display font-black text-brand-navy mb-2">João <span class="text-lg font-medium text-gray-400">· 19</span></h4>
+                        <p class="text-brand-accent font-black text-sm uppercase tracking-widest mb-6">Co-Fundador & Diretor Técnico</p>
+                        <p class="text-gray-500 leading-relaxed text-base">
+                            O arquiteto do código. Focado em garantir que os nossos sites são ultrarrápidos, indestrutíveis em segurança e otimizados para dominar o Google (SEO).
                         </p>
                     </div>
                 </div>
 
-                <div class="bg-brand-light p-10 rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-2xl hover:border-brand-accent/20 hover:-translate-y-2 transition-all duration-500 group flex flex-col items-center text-center relative overflow-hidden">
-                    
-                    <div class="absolute -top-4 -left-4 text-brand-navy/5 group-hover:text-brand-accent/10 transition-colors duration-500">
-                        <svg class="w-32 h-32 transform -scale-x-100" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" /></svg>
+                <div class="bg-white p-12 rounded-[2rem] shadow-xl hover:shadow-[0_20px_50px_rgba(24,194,165,0.15)] hover:-translate-y-2 transition-all duration-500 group border-2 border-transparent hover:border-brand-accent/20 relative">
+                    <div class="w-32 h-32 bg-gray-50 rounded-full flex items-center justify-center mb-8 mx-auto border-4 border-white shadow-lg group-hover:scale-105 transition-transform duration-500 overflow-hidden relative z-10">
+                        <img src="images/img_vetorial_manita.png" alt="Martim" class="w-full h-full object-cover scale-[1.2]">
                     </div>
-                    
-                    <div class="w-32 h-32 bg-white shadow-md text-brand-accent rounded-full flex items-center justify-center mb-6 border border-gray-50 group-hover:scale-110 transition-transform duration-500 relative z-10 overflow-hidden">
-                        <img src="images/img_vetorial_manita.png" alt="Martim - Co-Fundador & Diretor Criativo" class="w-full h-full object-cover">
-                    </div>
-                    
-                    <div class="relative z-10">
-                        <h4 class="text-2xl font-bold text-brand-navy mb-1">Martim <span class="text-base font-medium text-gray-400">· 19 anos</span></h4>
-                        <p class="text-brand-accent font-bold text-xs uppercase tracking-widest mb-5">Co-Fundador & Diretor Criativo</p>
-                        <p class="text-gray-500 leading-relaxed text-sm">
-                            Estudante de Multimédia. É o olhar clínico do design, responsável por criar identidades visuais impactantes e experiências de utilizador (UI/UX) que convertem visitantes em clientes.
+                    <div class="text-center">
+                        <h4 class="text-3xl font-display font-black text-brand-navy mb-2">Martim <span class="text-lg font-medium text-gray-400">· 19</span></h4>
+                        <p class="text-brand-accent font-black text-sm uppercase tracking-widest mb-6">Co-Fundador & Diretor Criativo</p>
+                        <p class="text-gray-500 leading-relaxed text-base">
+                            A mente visual. Responsável por criar identidades visuais avassaladoras e experiências de utilizador (UI/UX) que convertem visitantes em clientes fiéis.
                         </p>
                     </div>
                 </div>
@@ -180,50 +152,38 @@
         </div>
     </section>
 
-    <footer class="bg-brand-navy py-12 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
+    <footer class="bg-brand-navy pt-32 pb-12 relative overflow-hidden border-t border-brand-accent/20">
+        <h2 class="text-[15vw] leading-none font-display font-black text-white/5 absolute top-10 left-1/2 -translate-x-1/2 whitespace-nowrap select-none pointer-events-none tracking-tighter">OESTELAB</h2>
+        
+        <div class="max-w-7xl mx-auto px-4 relative z-10 flex flex-col items-center text-center">
             
-            <div class="flex items-center justify-center md:justify-start gap-1 cursor-pointer">
-                <a href="index.html">
-                    <img src="images/Logo_Simples_Branco_SemFundo.png" alt="OesteLab Logo Branco" class="h-10 md:h-12 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity duration-300">
-                </a>
+            <h3 class="text-5xl md:text-8xl font-display font-black text-white mb-8 tracking-tighter uppercase">Pronto para <br><span class="text-brand-accent">dominar?</span></h3>
+            
+            <p class="text-xl text-gray-400 mb-12 max-w-2xl font-light">
+                Não deixe a sua concorrência ganhar mais terreno. Vamos construir a sua nova arma digital hoje.
+            </p>
+            
+            <a href="contactos.html" class="inline-flex text-3xl md:text-5xl font-display font-black text-white hover:text-brand-accent transition-colors border-b-4 border-brand-accent pb-2 hover:border-white mb-32 items-center justify-center gap-4">
+                VAMOS FALAR
+            </a>
+            
+            <div class="w-full pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-2">
+                    <span class="text-xl font-display font-black tracking-tighter text-white">OESTE<span class="text-brand-accent">LAB</span><span class="text-brand-accent text-2xl leading-none">.</span></span>
+                </div>
+                
+                <p class="text-gray-500 text-sm font-medium">© <span id="ano-atual"></span> OesteLab. Nascidos e criados na Região Oeste.</p>
+                
+                <div class="flex gap-6">
+                    <a href="mailto:geral@oestelab.pt" class="text-gray-400 hover:text-brand-accent font-bold text-sm uppercase tracking-widest">Email</a>
+                    <a href="https://www.instagram.com/_oestelab_/" target="_blank" class="text-gray-400 hover:text-brand-accent font-bold text-sm uppercase tracking-widest">Instagram</a>
+                </div>
             </div>
-            
-            <p class="text-gray-400 text-sm font-medium tracking-wide">Soluções digitais, resultados reais. Baseados no Oeste.</p>
-            
-            <p class="text-gray-500 text-xs">© <span id="ano-atual"></span> OesteLab. Todos os direitos reservados.</p>
         </div>
     </footer>
 
     <script>
-        const btn = document.getElementById('mobile-btn');
-        const menu = document.getElementById('mobile-menu');
-        const links = menu.querySelectorAll('a');
-
-        // Toggle Menu
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-            menu.classList.toggle('flex');
-        });
-
-        // Fechar ao clicar num link
-        links.forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.add('hidden');
-                menu.classList.remove('flex');
-            });
-        });
-
-        // Atualizar ano automaticamente
-        const anoElement = document.getElementById('ano-atual');
-        if(anoElement) { anoElement.textContent = new Date().getFullYear(); }
-
-        if(btn && menu) {
-            btn.addEventListener('click', () => {
-                menu.classList.toggle('hidden');
-                menu.classList.toggle('flex');
-            });
-        }
+        document.getElementById('ano-atual').textContent = new Date().getFullYear();
     </script>
 </body>
 </html>

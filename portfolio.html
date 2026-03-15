@@ -54,8 +54,8 @@
                 </a>
             </nav>
 
-            <div class="md:hidden flex items-center">
-                <button class="text-white hover:text-brand-accent focus:outline-none transition-colors">
+           <div class="md:hidden flex items-center">
+                <button id="mobile-btn" class="text-white hover:text-brand-accent focus:outline-none transition-colors">
                     <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
                     </svg>
@@ -63,6 +63,13 @@
             </div>
         </div>
     </header>
+
+    <div id="mobile-menu" class="hidden fixed top-24 inset-x-4 bg-brand-navy/95 backdrop-blur-xl border border-white/10 flex-col py-6 px-6 shadow-2xl md:hidden z-40 rounded-3xl">
+        <a href="index.html" class="py-4 text-base font-bold text-white hover:text-brand-accent border-b border-white/5">Início</a>
+        <a href="portfolio.html" class="py-4 text-base font-bold text-gray-400 hover:text-brand-accent border-b border-white/5">Portfólio</a>
+        <a href="servicos.html" class="py-4 text-base font-bold text-gray-400 hover:text-brand-accent border-b border-white/5">Serviços</a>
+        <a href="contactos.html" class="mt-6 py-4 text-center text-base font-bold text-brand-navy bg-brand-accent rounded-xl shadow-[0_0_20px_rgba(24,194,165,0.4)] uppercase tracking-widest">Falar Connosco</a>
+    </div>
 
     <div id="mobile-menu" class="hidden fixed top-20 left-0 w-full bg-white/95 backdrop-blur-xl border-b border-gray-200 flex-col py-6 px-6 shadow-2xl md:hidden z-40">
         <a href="index.html" class="py-4 text-base font-bold text-gray-800 hover:text-brand-accent border-b border-gray-100">Início</a>
@@ -236,6 +243,16 @@
             btn.addEventListener('click', () => {
                 menu.classList.toggle('hidden');
                 menu.classList.toggle('flex');
+            });
+        }
+
+        const btnMob = document.getElementById('mobile-btn');
+        const menuMob = document.getElementById('mobile-menu');
+
+        if(btnMob && menuMob) {
+            btnMob.addEventListener('click', () => {
+                menuMob.classList.toggle('hidden');
+                menuMob.classList.toggle('flex');
             });
         }
     </script>

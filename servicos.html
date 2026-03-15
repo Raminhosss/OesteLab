@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800;900&family=Inter:wght@400;500&display=swap" rel="stylesheet">
     
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -31,7 +32,6 @@
             }
         }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800;900&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body class="bg-brand-light antialiased text-brand-navy font-sans selection:bg-brand-accent selection:text-white">
 
@@ -69,14 +69,6 @@
         <a href="portfolio.html" class="py-4 text-base font-bold text-gray-400 hover:text-brand-accent border-b border-white/5">Portfólio</a>
         <a href="servicos.html" class="py-4 text-base font-bold text-gray-400 hover:text-brand-accent border-b border-white/5">Serviços</a>
         <a href="contactos.html" class="mt-6 py-4 text-center text-base font-bold text-brand-navy bg-brand-accent rounded-xl shadow-[0_0_20px_rgba(24,194,165,0.4)] uppercase tracking-widest">Falar Connosco</a>
-    </div>
-
-    <div id="mobile-menu" class="hidden fixed top-20 left-0 w-full bg-white/95 backdrop-blur-xl border-b border-gray-200 flex-col py-6 px-6 shadow-2xl md:hidden z-40">
-        <a href="index.html" class="py-4 text-base font-bold text-gray-800 hover:text-brand-accent border-b border-gray-100">Início</a>
-        <a href="servicos.html" class="py-4 text-base font-bold text-gray-800 hover:text-brand-accent border-b border-gray-100">Serviços</a>
-        <a href="portfolio.html" class="py-4 text-base font-bold text-gray-800 hover:text-brand-accent border-b border-gray-100">Portfólio</a>
-        <a href="contactos.html" class="py-4 text-base font-bold text-gray-800 hover:text-brand-accent">Contactos</a>
-        <a href="contactos.html" class="mt-6 py-4 text-center text-base font-bold text-white bg-brand-accent rounded-xl shadow-lg">Falar Connosco</a>
     </div>
 
     <section class="pt-32 pb-16 bg-white border-b border-gray-100">
@@ -255,7 +247,7 @@
             </p>
             
             <a href="contactos.html" class="inline-flex text-3xl md:text-5xl font-display font-black text-white hover:text-brand-accent transition-colors border-b-4 border-brand-accent pb-2 hover:border-white mb-32 items-center justify-center gap-4">
-                VAMOS FALAR
+                VAMOS FALAR 
             </a>
             
             <div class="w-full pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
@@ -274,34 +266,16 @@
     </footer>
 
     <script>
-        document.getElementById('ano-atual').textContent = new Date().getFullYear();
+        const anoElement = document.getElementById('ano-atual');
+        if(anoElement) { anoElement.textContent = new Date().getFullYear(); }
 
         const btn = document.getElementById('mobile-btn');
         const menu = document.getElementById('mobile-menu');
-
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-            menu.classList.toggle('flex');
-        });
-
-        // Atualizar ano automaticamente
-        const anoElement = document.getElementById('ano-atual');
-        if(anoElement) { anoElement.textContent = new Date().getFullYear(); }
 
         if(btn && menu) {
             btn.addEventListener('click', () => {
                 menu.classList.toggle('hidden');
                 menu.classList.toggle('flex');
-            });
-        }
-
-        const btnMob = document.getElementById('mobile-btn');
-        const menuMob = document.getElementById('mobile-menu');
-
-        if(btnMob && menuMob) {
-            btnMob.addEventListener('click', () => {
-                menuMob.classList.toggle('hidden');
-                menuMob.classList.toggle('flex');
             });
         }
     </script>

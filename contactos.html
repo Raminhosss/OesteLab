@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800;900&family=Inter:wght@400;500&display=swap" rel="stylesheet">
     
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -31,7 +32,6 @@
             }
         }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800;900&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body class="bg-brand-light antialiased text-brand-navy font-sans selection:bg-brand-accent selection:text-white">
 
@@ -64,18 +64,11 @@
         </div>
     </header>
 
-     <div id="mobile-menu" class="hidden fixed top-24 inset-x-4 bg-brand-navy/95 backdrop-blur-xl border border-white/10 flex-col py-6 px-6 shadow-2xl md:hidden z-40 rounded-3xl">
+    <div id="mobile-menu" class="hidden fixed top-24 inset-x-4 bg-brand-navy/95 backdrop-blur-xl border border-white/10 flex-col py-6 px-6 shadow-2xl md:hidden z-40 rounded-3xl">
         <a href="index.html" class="py-4 text-base font-bold text-white hover:text-brand-accent border-b border-white/5">Início</a>
         <a href="portfolio.html" class="py-4 text-base font-bold text-gray-400 hover:text-brand-accent border-b border-white/5">Portfólio</a>
         <a href="servicos.html" class="py-4 text-base font-bold text-gray-400 hover:text-brand-accent border-b border-white/5">Serviços</a>
         <a href="contactos.html" class="mt-6 py-4 text-center text-base font-bold text-brand-navy bg-brand-accent rounded-xl shadow-[0_0_20px_rgba(24,194,165,0.4)] uppercase tracking-widest">Falar Connosco</a>
-    </div>
-
-    <div id="mobile-menu" class="hidden fixed top-20 left-0 w-full bg-white/95 backdrop-blur-xl border-b border-gray-200 flex-col py-6 px-6 shadow-2xl md:hidden z-40">
-        <a href="index.html" class="py-4 text-base font-bold text-gray-800 hover:text-brand-accent border-b border-gray-100">Início</a>
-        <a href="servicos.html" class="py-4 text-base font-bold text-gray-800 hover:text-brand-accent border-b border-gray-100">Serviços</a>
-        <a href="portfolio.html" class="py-4 text-base font-bold text-gray-800 hover:text-brand-accent border-b border-gray-100">Portfólio</a>
-        <a href="contactos.html" class="py-4 text-base font-bold text-brand-accent">Contactos</a>
     </div>
 
     <section class="pt-32 pb-16 bg-white border-b border-gray-100 relative overflow-hidden">
@@ -131,7 +124,7 @@
                         <form id="contact-form" action="https://formspree.io/f/mkovygqz" method="POST" class="space-y-6">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
-                                    <label class="block text-sm font-bold text-gray-700 mb-2">Nome Completo</label>
+                                    <label class="block text-sm font-bold text-gray-700 mb-2">Nome</label>
                                     <input type="text" name="nome" required class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-accent focus:border-transparent outline-none transition-all" placeholder="O seu nome">
                                 </div>
                                 <div>
@@ -222,7 +215,7 @@
         const anoElement = document.getElementById('ano-atual');
         if(anoElement) { anoElement.textContent = new Date().getFullYear(); }
 
-        // Menu Mobile
+        // Menu Mobile (Agora corrigido para usar apenas uma vez)
         const btn = document.getElementById('mobile-btn');
         const menu = document.getElementById('mobile-menu');
         if(btn && menu) {
@@ -232,14 +225,13 @@
             });
         }
 
-        // Lógica Inteligente para pré-selecionar o plano com base no link clicado nos Serviços
+        // Lógica Inteligente para pré-selecionar o plano
         document.addEventListener("DOMContentLoaded", function() {
             const urlParams = new URLSearchParams(window.location.search);
             const plano = urlParams.get('plano');
             const selectElement = document.getElementById('plano-select');
             
             if(plano && selectElement) {
-                // Percorre as opções e seleciona a que corresponde ao URL (ex: ?plano=tracao)
                 for(let i = 0; i < selectElement.options.length; i++) {
                     if(selectElement.options[i].value === plano) {
                         selectElement.selectedIndex = i;
@@ -254,55 +246,43 @@
         const statusMsg = document.getElementById('sucesso-msg');
         const btnSubmit = document.getElementById('btn-submit');
 
-        form.addEventListener('submit', async function(event) {
-            event.preventDefault(); // Impede que a página recarregue
-            
-            // Muda o botão para estado de "A Enviar..."
-            const btnOriginalText = btnSubmit.innerHTML;
-            btnSubmit.innerHTML = 'A enviar...';
-            btnSubmit.disabled = true;
-            btnSubmit.classList.add('opacity-70', 'cursor-not-allowed');
-
-            const data = new FormData(event.target);
-            
-            try {
-                const response = await fetch(event.target.action, {
-                    method: form.method,
-                    body: data,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
+        if(form && btnSubmit) {
+            form.addEventListener('submit', async function(event) {
+                event.preventDefault(); 
                 
-                if (response.ok) {
-                    // Se correu bem: mostra a mensagem verde e limpa o formulário
-                    statusMsg.classList.remove('hidden');
-                    form.reset();
+                const btnOriginalText = btnSubmit.innerHTML;
+                btnSubmit.innerHTML = 'A enviar...';
+                btnSubmit.disabled = true;
+                btnSubmit.classList.add('opacity-70', 'cursor-not-allowed');
+
+                const data = new FormData(event.target);
+                
+                try {
+                    const response = await fetch(event.target.action, {
+                        method: form.method,
+                        body: data,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
                     
-                    // Esconde a mensagem ao fim de 5 segundos (Opcional)
-                    setTimeout(() => {
-                        statusMsg.classList.add('hidden');
-                    }, 5000);
-                } else {
-                    alert("Ocorreu um erro a processar o seu pedido. Tente novamente.");
+                    if (response.ok) {
+                        statusMsg.classList.remove('hidden');
+                        form.reset();
+                        
+                        setTimeout(() => {
+                            statusMsg.classList.add('hidden');
+                        }, 5000);
+                    } else {
+                        alert("Ocorreu um erro a processar o seu pedido. Tente novamente.");
+                    }
+                } catch (error) {
+                    alert("Ocorreu um erro de ligação. Verifique a sua internet.");
+                } finally {
+                    btnSubmit.innerHTML = btnOriginalText;
+                    btnSubmit.disabled = false;
+                    btnSubmit.classList.remove('opacity-70', 'cursor-not-allowed');
                 }
-            } catch (error) {
-                alert("Ocorreu um erro de ligação. Verifique a sua internet.");
-            } finally {
-                // Devolve o botão ao normal
-                btnSubmit.innerHTML = btnOriginalText;
-                btnSubmit.disabled = false;
-                btnSubmit.classList.remove('opacity-70', 'cursor-not-allowed');
-            }
-        });
-
-        const btnMob = document.getElementById('mobile-btn');
-        const menuMob = document.getElementById('mobile-menu');
-
-        if(btnMob && menuMob) {
-            btnMob.addEventListener('click', () => {
-                menuMob.classList.toggle('hidden');
-                menuMob.classList.toggle('flex');
             });
         }
     </script>

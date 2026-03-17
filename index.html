@@ -373,36 +373,54 @@
     </section>
 
     <div id="chatbot-container" class="fixed bottom-6 right-6 z-[60] font-sans">
-    <button id="chat-toggle" class="w-16 h-16 bg-brand-accent text-brand-navy rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform duration-300 shadow-brand-accent/20">
-        <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
-        </svg>
-    </button>
-
-    <div id="chat-window" class="hidden absolute bottom-20 right-0 w-[350px] sm:w-[400px] h-[500px] bg-white rounded-3xl shadow-2xl border border-gray-100 flex flex-col overflow-hidden animate-in slide-in-from-bottom-4 duration-300">
-        <div class="bg-brand-navy p-5 flex justify-between items-center text-white">
-            <div class="flex items-center gap-3">
-                <div class="w-2 h-2 bg-brand-accent rounded-full animate-pulse"></div>
-                <span class="font-bold tracking-tight">OesteBot Assistente</span>
+        
+        <div id="chat-tooltip" class="absolute bottom-20 right-0 md:right-2 w-56 bg-white p-3 rounded-2xl shadow-[0_10px_40px_rgba(24,194,165,0.2)] border border-brand-accent/30 flex items-center gap-3 cursor-pointer hover:scale-105 transition-transform origin-bottom-right animate-bounce">
+            <div class="absolute -bottom-2 right-5 w-4 h-4 bg-white border-b border-r border-brand-accent/30 transform rotate-45"></div>
+            
+            <div class="relative flex items-center justify-center flex-shrink-0 w-10 h-10 bg-brand-navy rounded-full shadow-inner">
+                <svg class="w-5 h-5 text-brand-accent" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2a2 2 0 012 2c0 .74-.4 1.39-1 1.73V7h1a3 3 0 013 3v2h2a1 1 0 011 1v4a1 1 0 01-1 1h-2v2a3 3 0 01-3 3H9a3 3 0 01-3-3v-2H4a1 1 0 01-1-1v-4a1 1 0 011-1h2V10a3 3 0 013-3h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 012-2zM9 11a1 1 0 100 2 1 1 0 000-2zm6 0a1 1 0 100 2 1 1 0 000-2z" />
+                </svg>
+                <span class="absolute -top-1 -right-1 flex h-3.5 w-3.5">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-accent opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-brand-accent"></span>
+                </span>
             </div>
-            <button id="chat-close" class="hover:text-brand-accent transition-colors">
-                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-            </button>
+            <p class="text-xs font-bold text-brand-navy leading-snug">
+                Assistente Online 24h.<br><span class="text-gray-500 font-medium">Clique aqui para falar!</span>
+            </p>
         </div>
 
-        <div id="chat-messages" class="flex-1 p-4 overflow-y-auto bg-gray-50 flex flex-col gap-3 text-sm">
+        <button id="chat-toggle" class="relative w-16 h-16 bg-brand-accent text-brand-navy rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform duration-300 shadow-[0_0_20px_rgba(24,194,165,0.4)] z-10">
+            <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+            </svg>
+        </button>
+
+        <div id="chat-window" class="hidden absolute bottom-20 right-0 w-[350px] sm:w-[400px] h-[500px] bg-white rounded-3xl shadow-2xl border border-gray-100 flex flex-col overflow-hidden animate-in slide-in-from-bottom-4 duration-300 z-20">
+            <div class="bg-brand-navy p-5 flex justify-between items-center text-white">
+                <div class="flex items-center gap-3">
+                    <div class="w-2 h-2 bg-brand-accent rounded-full animate-pulse"></div>
+                    <span class="font-bold tracking-tight">OesteBot Assistente</span>
+                </div>
+                <button id="chat-close" class="hover:text-brand-accent transition-colors">
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
             </div>
 
-        <div class="p-4 bg-white border-t border-gray-100 flex gap-2">
-            <input type="text" id="chat-input" placeholder="Escreva a sua dúvida..." class="flex-1 px-4 py-2 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-brand-accent outline-none text-sm transition-all">
-            <button id="chat-send" class="w-10 h-10 min-w-[40px] flex-none bg-brand-navy text-brand-accent rounded-xl hover:bg-brand-accent hover:text-brand-navy transition-all flex items-center justify-center p-0">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
-                </svg>
-            </button>
+            <div id="chat-messages" class="flex-1 p-4 overflow-y-auto bg-gray-50 flex flex-col gap-3 text-sm">
+                </div>
+
+            <div class="p-4 bg-white border-t border-gray-100 flex gap-2">
+                <input type="text" id="chat-input" placeholder="Escreva a sua dúvida..." class="flex-1 px-4 py-2 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-brand-accent outline-none text-sm transition-all">
+                <button id="chat-send" class="w-10 h-10 min-w-[40px] flex-none bg-brand-navy text-brand-accent rounded-xl hover:bg-brand-accent hover:text-brand-navy transition-all flex items-center justify-center p-0">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                    </svg>
+                </button>
+            </div>
         </div>
     </div>
-</div>
 
     <footer class="bg-brand-navy pt-32 pb-12 relative overflow-hidden border-t border-brand-accent/20">
         <h2 class="text-[15vw] leading-none font-display font-black text-white/5 absolute top-10 left-1/2 -translate-x-1/2 whitespace-nowrap select-none pointer-events-none tracking-tighter">OESTELAB</h2>
@@ -514,111 +532,103 @@
             });
         }
 
-        const toggle = document.getElementById('chat-toggle');
-    const windowChat = document.getElementById('chat-window');
-    const close = document.getElementById('chat-close');
-    const messagesContainer = document.getElementById('chat-messages');
-    const input = document.getElementById('chat-input');
-    const send = document.getElementById('chat-send');
+       const toggle = document.getElementById('chat-toggle');
+        const windowChat = document.getElementById('chat-window');
+        const close = document.getElementById('chat-close');
+        const messagesContainer = document.getElementById('chat-messages');
+        const input = document.getElementById('chat-input');
+        const send = document.getElementById('chat-send');
+        const chatTooltip = document.getElementById('chat-tooltip');
 
-    // 1. NOVO: Função para formatar Negritos (Markdown para HTML) e Quebras de Linha
-    function formatMessage(text) {
-        if (!text) return '';
-        return text
-            // Transforma **texto** em negrito
-            .replace(/\*\*(.*?)\*\*/g, '<strong class="font-black text-brand-navy">$1</strong>')
-            // Transforma *texto* em negrito (caso a IA use apenas 1 asterisco)
-            .replace(/\*(.*?)\*/g, '<strong class="font-bold text-brand-navy">$1</strong>')
-            // Transforma quebras de linha em <br>
-            .replace(/\n/g, '<br>');
-    }
-
-    // 2. NOVO: Função isolada para forçar o scroll sempre para baixo
-    function scrollToBottom() {
-        // O setTimeout garante que o navegador já desenhou os elementos antes de fazer scroll
-        setTimeout(() => {
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-        }, 10);
-    }
-
-    // Inicialização: Carregar histórico ou mensagem de boas-vindas
-    document.addEventListener('DOMContentLoaded', () => {
-        const history = JSON.parse(localStorage.getItem('oestebot_history')) || [];
-        if (history.length === 0) {
-            const welcomeMsg = { role: 'bot', text: 'Olá! Sou o assistente da **OesteLab**. Em que posso ajudar o seu negócio hoje? 🚀' };
-            history.push(welcomeMsg);
-            localStorage.setItem('oestebot_history', JSON.stringify(history));
+        function formatMessage(text) {
+            if (!text) return '';
+            return text
+                .replace(/\*\*(.*?)\*\*/g, '<strong class="font-black text-brand-navy">$1</strong>')
+                .replace(/\*(.*?)\*/g, '<strong class="font-bold text-brand-navy">$1</strong>')
+                .replace(/\n/g, '<br>');
         }
-        renderHistory();
-    });
 
-    function renderHistory() {
-        const history = JSON.parse(localStorage.getItem('oestebot_history')) || [];
-        messagesContainer.innerHTML = history.map(msg => {
-            const isBot = msg.role === 'bot';
-            // Formata a mensagem apenas na hora de a mostrar no ecrã
-            const displayText = isBot ? formatMessage(msg.text) : msg.text;
-            
-            return `<div class="${isBot ? 'bg-white rounded-tl-none border border-gray-100' : 'self-end bg-brand-navy text-white rounded-tr-none shadow-md'} p-3 rounded-2xl max-w-[85%] leading-relaxed break-words">${displayText}</div>`;
-        }).join('');
-        scrollToBottom();
-    }
-
-    // 3. ATUALIZADO: Quando o chat abre, vai sempre para o fundo!
-    toggle.onclick = () => {
-        windowChat.classList.toggle('hidden');
-        if (!windowChat.classList.contains('hidden')) {
-            scrollToBottom(); 
+        // Função isolada de scroll (agora só é ativada ao abrir o chat)
+        function scrollToBottom() {
+            setTimeout(() => {
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }, 10);
         }
-    };
-    
-    close.onclick = () => windowChat.classList.add('hidden');
 
-    async function sendMessage() {
-        const text = input.value.trim();
-        if (!text) return;
-
-        // Guardar mensagem do utilizador
-        const history = JSON.parse(localStorage.getItem('oestebot_history'));
-        history.push({ role: 'user', text: text });
-        localStorage.setItem('oestebot_history', JSON.stringify(history));
-        
-        input.value = '';
-        renderHistory();
-
-        // Efeito "a escrever..."
-        const typingId = "typing-" + Date.now();
-        messagesContainer.innerHTML += `<div id="${typingId}" class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm max-w-[85%] border border-gray-100 animate-pulse text-gray-400 italic">OesteBot está a escrever...</div>`;
-        scrollToBottom();
-
-        try {
-            const response = await fetch('/api/chat', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message: text })
-            });
-            const data = await response.json();
-            
-            const typingElem = document.getElementById(typingId);
-            if (typingElem) typingElem.remove();
-            
-            if (response.ok && data.reply) {
-                // Guarda o texto RAW (com os asteriscos) na memória. A conversão é feita no renderHistory
-                history.push({ role: 'bot', text: data.reply });
+        document.addEventListener('DOMContentLoaded', () => {
+            const history = JSON.parse(localStorage.getItem('oestebot_history')) || [];
+            if (history.length === 0) {
+                const welcomeMsg = { role: 'bot', text: 'Olá! Sou o assistente da **OesteLab**. Em que posso ajudar o seu negócio hoje? 🚀' };
+                history.push(welcomeMsg);
                 localStorage.setItem('oestebot_history', JSON.stringify(history));
-                renderHistory();
-            } else {
-                messagesContainer.innerHTML += `<div class="bg-red-50 text-red-600 p-3 rounded-2xl rounded-tl-none shadow-sm max-w-[85%] border border-red-200 text-xs font-mono break-words"><b>ERRO:</b> ${data.error || 'Erro Desconhecido'}</div>`;
-                scrollToBottom();
             }
-        } catch (e) {
-            const typingElem = document.getElementById(typingId);
-            if (typingElem) typingElem.innerHTML = "Erro fatal de ligação à internet ou ao Vercel.";
-        }
-    }
+            renderHistory();
+        });
 
-    send.onclick = sendMessage;
-    input.onkeypress = (e) => { if (e.key === 'Enter') sendMessage(); };
+        // NOTA: Retirei o scrollToBottom() daqui de dentro para não forçar a descida a meio da leitura
+        function renderHistory() {
+            const history = JSON.parse(localStorage.getItem('oestebot_history')) || [];
+            messagesContainer.innerHTML = history.map(msg => {
+                const isBot = msg.role === 'bot';
+                const displayText = isBot ? formatMessage(msg.text) : msg.text;
+                return `<div class="${isBot ? 'bg-white rounded-tl-none border border-gray-100' : 'self-end bg-brand-navy text-white rounded-tr-none shadow-md'} p-3 rounded-2xl max-w-[85%] leading-relaxed break-words">${displayText}</div>`;
+            }).join('');
+        }
+
+        // O Scroll só acontece exclusivamente quando o chat é aberto
+        function openChat() {
+            windowChat.classList.toggle('hidden');
+            if (chatTooltip) chatTooltip.classList.add('hidden'); 
+            if (!windowChat.classList.contains('hidden')) {
+                scrollToBottom(); 
+            }
+        }
+
+        toggle.onclick = openChat;
+        if (chatTooltip) chatTooltip.onclick = openChat;
+        
+        close.onclick = () => windowChat.classList.add('hidden');
+
+        async function sendMessage() {
+            const text = input.value.trim();
+            if (!text) return;
+
+            const history = JSON.parse(localStorage.getItem('oestebot_history'));
+            history.push({ role: 'user', text: text });
+            localStorage.setItem('oestebot_history', JSON.stringify(history));
+            
+            input.value = '';
+            renderHistory();
+
+            const typingId = "typing-" + Date.now();
+            messagesContainer.innerHTML += `<div id="${typingId}" class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm max-w-[85%] border border-gray-100 animate-pulse text-gray-400 italic">OesteBot está a escrever...</div>`;
+            
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: text })
+                });
+                const data = await response.json();
+                
+                const typingElem = document.getElementById(typingId);
+                if (typingElem) typingElem.remove();
+                
+                if (response.ok && data.reply) {
+                    history.push({ role: 'bot', text: data.reply });
+                    localStorage.setItem('oestebot_history', JSON.stringify(history));
+                    renderHistory();
+                } else {
+                    messagesContainer.innerHTML += `<div class="bg-red-50 text-red-600 p-3 rounded-2xl rounded-tl-none shadow-sm max-w-[85%] border border-red-200 text-xs font-mono break-words"><b>ERRO:</b> ${data.error || 'Erro Desconhecido'}</div>`;
+                }
+            } catch (e) {
+                const typingElem = document.getElementById(typingId);
+                if (typingElem) typingElem.innerHTML = "Erro fatal de ligação à internet ou ao Vercel.";
+            }
+        }
+
+        send.onclick = sendMessage;
+        input.onkeypress = (e) => { if (e.key === 'Enter') sendMessage(); };
     </script>
 </body>
 </html>

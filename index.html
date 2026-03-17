@@ -569,15 +569,20 @@
             });
             const data = await response.json();
             
-            document.getElementById(typingId).remove();
+            // Correção aqui: Verifica se o elemento existe antes de remover
+            const typingElem = document.getElementById(typingId);
+            if (typingElem) typingElem.remove();
             
-            // Guardar resposta do bot no histórico
-            history.push({ role: 'bot', text: data.reply.replace(/\n/g, '<br>') });
-            localStorage.setItem('oestebot_history', JSON.stringify(history));
-            
-            renderHistory();
+            if (data.reply) {
+                history.push({ role: 'bot', text: data.reply.replace(/\n/g, '<br>') });
+                localStorage.setItem('oestebot_history', JSON.stringify(history));
+                renderHistory();
+            } else {
+                throw new Error("Sem resposta");
+            }
         } catch (e) {
-            document.getElementById(typingId).innerHTML = "Erro ao ligar à OesteLab. Tente novamente.";
+            const typingElem = document.getElementById(typingId);
+            if (typingElem) typingElem.innerHTML = "Erro ao ligar à OesteLab. Tente novamente.";
         }
     }
 

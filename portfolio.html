@@ -297,11 +297,31 @@
     const input = document.getElementById('chat-input');
     const send = document.getElementById('chat-send');
 
+    // 1. NOVO: Função para formatar Negritos (Markdown para HTML) e Quebras de Linha
+    function formatMessage(text) {
+        if (!text) return '';
+        return text
+            // Transforma **texto** em negrito
+            .replace(/\*\*(.*?)\*\*/g, '<strong class="font-black text-brand-navy">$1</strong>')
+            // Transforma *texto* em negrito (caso a IA use apenas 1 asterisco)
+            .replace(/\*(.*?)\*/g, '<strong class="font-bold text-brand-navy">$1</strong>')
+            // Transforma quebras de linha em <br>
+            .replace(/\n/g, '<br>');
+    }
+
+    // 2. NOVO: Função isolada para forçar o scroll sempre para baixo
+    function scrollToBottom() {
+        // O setTimeout garante que o navegador já desenhou os elementos antes de fazer scroll
+        setTimeout(() => {
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }, 10);
+    }
+
     // Inicialização: Carregar histórico ou mensagem de boas-vindas
     document.addEventListener('DOMContentLoaded', () => {
         const history = JSON.parse(localStorage.getItem('oestebot_history')) || [];
         if (history.length === 0) {
-            const welcomeMsg = { role: 'bot', text: 'Olá! Sou o assistente da <b>OesteLab</b>. Em que posso ajudar o seu negócio hoje? 🚀' };
+            const welcomeMsg = { role: 'bot', text: 'Olá! Sou o assistente da **OesteLab**. Em que posso ajudar o seu negócio hoje? 🚀' };
             history.push(welcomeMsg);
             localStorage.setItem('oestebot_history', JSON.stringify(history));
         }
@@ -312,19 +332,29 @@
         const history = JSON.parse(localStorage.getItem('oestebot_history')) || [];
         messagesContainer.innerHTML = history.map(msg => {
             const isBot = msg.role === 'bot';
-            return `<div class="${isBot ? 'bg-white rounded-tl-none border border-gray-100' : 'self-end bg-brand-navy text-white rounded-tr-none shadow-md'} p-3 rounded-2xl max-w-[85%] leading-relaxed">${msg.text}</div>`;
+            // Formata a mensagem apenas na hora de a mostrar no ecrã
+            const displayText = isBot ? formatMessage(msg.text) : msg.text;
+            
+            return `<div class="${isBot ? 'bg-white rounded-tl-none border border-gray-100' : 'self-end bg-brand-navy text-white rounded-tr-none shadow-md'} p-3 rounded-2xl max-w-[85%] leading-relaxed break-words">${displayText}</div>`;
         }).join('');
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        scrollToBottom();
     }
 
-    toggle.onclick = () => windowChat.classList.toggle('hidden');
+    // 3. ATUALIZADO: Quando o chat abre, vai sempre para o fundo!
+    toggle.onclick = () => {
+        windowChat.classList.toggle('hidden');
+        if (!windowChat.classList.contains('hidden')) {
+            scrollToBottom(); 
+        }
+    };
+    
     close.onclick = () => windowChat.classList.add('hidden');
 
     async function sendMessage() {
         const text = input.value.trim();
         if (!text) return;
 
-        // Guardar mensagem do utilizador no histórico
+        // Guardar mensagem do utilizador
         const history = JSON.parse(localStorage.getItem('oestebot_history'));
         history.push({ role: 'user', text: text });
         localStorage.setItem('oestebot_history', JSON.stringify(history));
@@ -335,7 +365,7 @@
         // Efeito "a escrever..."
         const typingId = "typing-" + Date.now();
         messagesContainer.innerHTML += `<div id="${typingId}" class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm max-w-[85%] border border-gray-100 animate-pulse text-gray-400 italic">OesteBot está a escrever...</div>`;
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        scrollToBottom();
 
         try {
             const response = await fetch('/api/chat', {
@@ -345,15 +375,21 @@
             });
             const data = await response.json();
             
-            document.getElementById(typingId).remove();
+            const typingElem = document.getElementById(typingId);
+            if (typingElem) typingElem.remove();
             
-            // Guardar resposta do bot no histórico
-            history.push({ role: 'bot', text: data.reply.replace(/\n/g, '<br>') });
-            localStorage.setItem('oestebot_history', JSON.stringify(history));
-            
-            renderHistory();
+            if (response.ok && data.reply) {
+                // Guarda o texto RAW (com os asteriscos) na memória. A conversão é feita no renderHistory
+                history.push({ role: 'bot', text: data.reply });
+                localStorage.setItem('oestebot_history', JSON.stringify(history));
+                renderHistory();
+            } else {
+                messagesContainer.innerHTML += `<div class="bg-red-50 text-red-600 p-3 rounded-2xl rounded-tl-none shadow-sm max-w-[85%] border border-red-200 text-xs font-mono break-words"><b>ERRO:</b> ${data.error || 'Erro Desconhecido'}</div>`;
+                scrollToBottom();
+            }
         } catch (e) {
-            document.getElementById(typingId).innerHTML = "Erro ao ligar à OesteLab. Tente novamente.";
+            const typingElem = document.getElementById(typingId);
+            if (typingElem) typingElem.innerHTML = "Erro fatal de ligação à internet ou ao Vercel.";
         }
     }
 

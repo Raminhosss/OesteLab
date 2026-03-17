@@ -544,11 +544,10 @@
     toggle.onclick = () => windowChat.classList.toggle('hidden');
     close.onclick = () => windowChat.classList.add('hidden');
 
-    async function sendMessage() {
+   async function sendMessage() {
         const text = input.value.trim();
         if (!text) return;
 
-        // Guardar mensagem do utilizador no histórico
         const history = JSON.parse(localStorage.getItem('oestebot_history'));
         history.push({ role: 'user', text: text });
         localStorage.setItem('oestebot_history', JSON.stringify(history));
@@ -556,7 +555,6 @@
         input.value = '';
         renderHistory();
 
-        // Efeito "a escrever..."
         const typingId = "typing-" + Date.now();
         messagesContainer.innerHTML += `<div id="${typingId}" class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm max-w-[85%] border border-gray-100 animate-pulse text-gray-400 italic">OesteBot está a escrever...</div>`;
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
@@ -569,20 +567,21 @@
             });
             const data = await response.json();
             
-            // Correção aqui: Verifica se o elemento existe antes de remover
             const typingElem = document.getElementById(typingId);
             if (typingElem) typingElem.remove();
             
-            if (data.reply) {
+            if (response.ok && data.reply) {
                 history.push({ role: 'bot', text: data.reply.replace(/\n/g, '<br>') });
                 localStorage.setItem('oestebot_history', JSON.stringify(history));
                 renderHistory();
             } else {
-                throw new Error("Sem resposta");
+                // MOSTRA O ERRO EXATO NO ECRÃ DE CHAT
+                messagesContainer.innerHTML += `<div class="bg-red-50 text-red-600 p-3 rounded-2xl rounded-tl-none shadow-sm max-w-[85%] border border-red-200 text-xs font-mono break-words"><b>ERRO:</b> ${data.error || 'Erro Desconhecido'}</div>`;
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
             }
         } catch (e) {
             const typingElem = document.getElementById(typingId);
-            if (typingElem) typingElem.innerHTML = "Erro ao ligar à OesteLab. Tente novamente.";
+            if (typingElem) typingElem.innerHTML = "Erro fatal de ligação à internet ou ao Vercel.";
         }
     }
 

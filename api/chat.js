@@ -10,15 +10,25 @@ export default async function handler(req, res) {
   const { message } = req.body;
   const apiKey = process.env.GEMINI_API_KEY;
 
-  // 2. Verifica logo se o Vercel encontrou a chave
+  // 2. Verifica se o Vercel encontrou a chave
   if (!apiKey) {
-    return res.status(500).json({ error: 'Vercel não encontrou a chave GEMINI_API_KEY. Confirme as variáveis de ambiente.' });
+    return res.status(500).json({ error: 'Vercel não encontrou a chave GEMINI_API_KEY.' });
   }
 
-  const systemPrompt = "És o assistente da OesteLab em Torres Vedras. Responde de forma curta e profissional.";
+  // Personalidade da OesteLab
+  const systemPrompt = `
+    És o assistente virtual da OesteLab, uma agência de Web Design de Torres Vedras dirigida pelo João e pelo Martim.
+    A tua personalidade: Simpático, profissional, direto e focado em resultados.
+    Crença principal: Um site não deve ser apenas bonito, deve ser RÁPIDO e converter visitantes em clientes.
+    Serviços: Sites One-Page (250€-350€), Multi-Página (500€-800€) e Gestão de Redes Sociais.
+    Objetivo: Responder a dúvidas e convencer o cliente a pedir um orçamento.
+    Call to Action Final: Deves sempre sugerir que enviem mensagem para o Instagram (@_oestelab_) ou usem a página de contactos do site.
+    Instrução: Responde sempre em Português de Portugal e de forma concisa.
+  `;
 
   try {
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+    // A MÁGICA ESTÁ AQUI: Atualizado para o novo e mais rápido modelo gemini-2.5-flash!
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -28,7 +38,7 @@ export default async function handler(req, res) {
 
     const data = await response.json();
 
-    // 3. Apanha erros enviados pela própria Google (Ex: chave inválida, quota excedida)
+    // 3. Apanha erros enviados pela própria Google
     if (!response.ok) {
       return res.status(500).json({ error: `Recusado pela Google: ${data.error?.message || 'Erro Desconhecido'}` });
     }
